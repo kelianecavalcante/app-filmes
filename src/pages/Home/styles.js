@@ -37,7 +37,7 @@ export const SearchButton = styled.TouchableOpacity`
 `;
 
 export const Title = styled.Text` 
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 8px;
     font-size: 24px;
     font-weight: bold;
@@ -50,7 +50,7 @@ export const Title = styled.Text`
 export const BannerButton = styled.TouchableOpacity` `;
 
 export const Banner = styled.Image` 
-    height: 150px;
+    height: 225px;
     border-radius: 6px;
     margin: 0 14px;
 
