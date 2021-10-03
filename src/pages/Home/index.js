@@ -20,7 +20,7 @@ import SliderItem from '../../components/SliderItem';
 import api, { key } from '../../services/api';
 import { getListMovies, randomBanner } from '../../utils/movie';
 
-import {useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 
 function Home() {
 
@@ -28,6 +28,8 @@ function Home() {
     const [popularMovies, setPopularMovies] = useState([]);
     const [topMovies, setTopMovies] = useState([]);
     const [bannerMovie, setBannerMovie] = useState({});
+
+    const [input, setInput] = useState('');
 
     // loading inicia como true
     const [loading, setLoging] = useState(true);
@@ -92,8 +94,22 @@ function Home() {
     }, [])
 
     // navegando para a rota selecionada
-    function navigationDetailPage(item){
-        navigation.navigate('Detail', {id: item.id})
+    function navigationDetailPage(item) {
+        navigation.navigate('Detail', { id: item.id })
+    }
+
+    function handleSearchMovie() {
+        //if (input === '') {
+        //    alert('Preecha o campo para busca');
+        //    return;
+        //}
+
+        //se campo de busca estiver vazio, ao clicar na lupa ñ acontece nada
+        if(input === '')return;
+
+        //ao preencher campo de busca e pesquisar na lupa, ao retornar campo é limpo para nova pesquisa
+        navigation.navigate('Search', {name :input})
+        setInput('');
     }
 
 
@@ -116,8 +132,10 @@ function Home() {
             <SearchContainer >
                 <Input
                     placeholder="Ex Vingadores"
+                    value={input}
+                    onChangeText={(text) => setInput(text)}
                 />
-                <SearchButton>
+                <SearchButton onPress={handleSearchMovie}>
                     <Feather name="search" size={30} color='#FFF' />
                 </SearchButton>
             </SearchContainer>
@@ -125,10 +143,10 @@ function Home() {
             <ScrollView showsVerticalScrollIndicator={false} >
                 <Title>Em cartaz</Title>
 
-                <BannerButton activeOpacity={0.9} onPress={() => navigationDetailPage(bannerMovie) }>
+                <BannerButton activeOpacity={0.9} onPress={() => navigationDetailPage(bannerMovie)}>
                     <Banner
                         resizeMethod="resize"
-                        source={{ uri:  `https://image.tmdb.org/t/p/original/${bannerMovie.poster_path}` }}
+                        source={{ uri: `https://image.tmdb.org/t/p/original/${bannerMovie.poster_path}` }}
                     />
 
                 </BannerButton>
@@ -137,7 +155,7 @@ function Home() {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={nowMovies}
-                    renderItem={({ item }) => <SliderItem data={item} navigatePage={ () => navigationDetailPage(item) } />}
+                    renderItem={({ item }) => <SliderItem data={item} navigatePage={() => navigationDetailPage(item)} />}
                     keyExtrator={(item) => String(item.id)}
                 />
 
@@ -147,7 +165,7 @@ function Home() {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={popularMovies}
-                    renderItem={({ item }) => <SliderItem data={item} navigatePage={ () => navigationDetailPage(item) } />}
+                    renderItem={({ item }) => <SliderItem data={item} navigatePage={() => navigationDetailPage(item)} />}
                     keyExtrator={(item) => String(item.id)}
                 />
 
@@ -157,7 +175,7 @@ function Home() {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={topMovies}
-                    renderItem={({ item }) => <SliderItem data={item} navigatePage={ () => navigationDetailPage(item) } />}
+                    renderItem={({ item }) => <SliderItem data={item} navigatePage={() => navigationDetailPage(item)} />}
                     keyExtrator={(item) => String(item.id)}
                 />
 
