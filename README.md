@@ -19,7 +19,7 @@ The Movie Database: É uma base de dados grátis e de código aberto sobre Filme
 a diferença para as outras base de dados, é que TMDb é atualizada.
 
 # Playlist do WorkShop disponibilizada no Youtube 
-https://www.youtube.com/playlist?list=PLAF5G8rnMmBZB0gEr29t7VOqz-_vFUpN_
+https://www.youtube.com/watch?v=aFFq_nSyfgA&list=PLAF5G8rnMmBZB0gEr29t7VOqz-_vFUpN_&index=1
 
 # Tecnologias utilizadas
 
